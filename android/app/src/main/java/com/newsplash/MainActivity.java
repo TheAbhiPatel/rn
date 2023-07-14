@@ -1,12 +1,26 @@
 package com.asplashapp;
-
+import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
+import org.devio.rn.splashscreen.SplashScreen;
+import android.os.Handler;
+
+// ----> there is not use of these lines <------
+  // import android.view.Window;
+  // requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 public class MainActivity extends ReactActivity {
 
+ @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen.show(this, true);  // here
+      // SplashScreen.show(this,R.style.SplashScreenTheme, true);
+        super.onCreate(savedInstanceState);
+         // Add the following line to hide the splash screen after a delay
+        new Handler().postDelayed(() -> SplashScreen.hide(this), 2000);
+    }
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
    * rendering of the component.
